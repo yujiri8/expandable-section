@@ -35,7 +35,7 @@ customElements.define("expandable-section", class extends LitElement {
             const transition = this.style.transition;
             this.style.transition = '';
             requestAnimationFrame(() => {
-                this.expand();
+                this.style.height = this.scrollHeight + 'px';
                 // And then re-enable it.
                 requestAnimationFrame(() => {
                     this.style.transition = transition;
@@ -47,6 +47,18 @@ customElements.define("expandable-section", class extends LitElement {
     expand() {
         // Have the element transition to the height of its inner content.
         this.style.height = this.scrollHeight + 'px';
+        this.addEventListener('transitionend', this.unlimitHeight);
+    }
+    constructor() {
+        super();
+        // This is used as a temporary handler in expand().
+        this.unlimitHeight = () => {
+            this.style.height = 'unset';
+            // Don't leave this on there.
+            this.removeEventListener('transitionend', this.unlimitHeight);
+        };
+        this.addEventListener('transitioncancel',
+            () => this.removeEventListener('transitionend', this.unlimitHeight));
     }
     connectedCallback() {
         super.connectedCallback();
