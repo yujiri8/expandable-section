@@ -1,0 +1,20 @@
+{
+  "name": "expandable-section",
+  "version": "1.0.0",
+  "description": "A Lit-Element component for expand/collapse sections with external triggers",
+  "main": "expandable-section.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "lit-element",
+    "component",
+    "expand",
+    "collapse"
+  ],
+  "author": "Ryan Westlund",
+  "license": "ISC",
+  "dependencies": {
+    "lit-element": "^2.4.0"
+  }
+}
